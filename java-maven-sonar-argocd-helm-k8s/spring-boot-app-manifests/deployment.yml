@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+https://github.com/syedhuzaifa123/jenkins.gitapiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-boot-app
@@ -14,6 +14,8 @@ spec:
       labels:
         app: spring-boot-app
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
       - name: spring-boot-app
         image: syedhuzaifafazal123/cicd:24

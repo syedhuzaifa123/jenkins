@@ -13,11 +13,9 @@ spec:
     metadata:
       labels:
         app: spring-boot-app
-    spec:
-      imagePullSecrets:
-        - name: dockerhub-secret
+    spec: 
       containers:
       - name: spring-boot-app
-        image: syedhuzaifafazal123/cicd:24
+        image: syedhuzaifafazal/cicd:24
         ports:
         - containerPort: 8080

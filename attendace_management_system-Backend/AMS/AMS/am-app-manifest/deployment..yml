@@ -18,4 +18,4 @@ spec:
       - name: am-app
         image: syedhuzaifafazal/am:replaceImageTag
         ports:
-        - containerPort: 8081
+        - containerPort: 8080

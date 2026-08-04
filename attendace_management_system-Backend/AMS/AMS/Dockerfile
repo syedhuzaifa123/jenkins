@@ -1,7 +1,9 @@
 #
 # Build stage
 #
-FROM maven:3.9.15-openjdk-17 AS build
+
+#FROM maven:3.9.15-openjdk-17 AS build
+FROM maven:3.9-eclipse-temurin-17 AS build
 COPY . .
 RUN mvn clean install
 
@@ -11,5 +13,5 @@ RUN mvn clean install
 FROM eclipse-temurin:17-jdk
 COPY --from=build /target/AMS-0.0.1-SNAPSHOT.jar ams.jar
 # ENV PORT=8080
-EXPOSE 9000
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","ams.jar"]

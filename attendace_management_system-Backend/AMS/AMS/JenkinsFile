@@ -15,7 +15,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/syedhuzaifa123/jenkins.git'
+        git branch: 'main', url: 'https://github.com/syedhuzaifa123/jenkins.git'
       }
     }
     stage('Build and Test') {

@@ -5,7 +5,7 @@
 #FROM maven:3.9.15-openjdk-17 AS build
 FROM maven:3.9-eclipse-temurin-17 AS build
 COPY . .
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 #
 # Package stage

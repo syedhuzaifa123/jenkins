@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: am-app
-  labels:
-    app: am-app
+  namespace: gitops
 spec:
   replicas: 2
   selector:
@@ -13,16 +12,18 @@ spec:
     metadata:
       labels:
         app: am-app
-    spec: 
+    spec:
+      hostNetwork: true  # 🚀 Bypasses Flannel entirely to look at the host network
       containers:
       - name: am-app
-        image: syedhuzaifafazal/am:29
+        image: syedhuzaifafazal/am:28 # Matches your current build
         ports:
         - containerPort: 8080
         env:
-          - name: SPRING_DATASOURCE_URL
-            value: "jdbc:mysql://mysql-host-bridge:3306/AMS"
-          - name: SPRING_DATASOURCE_USERNAME
-            value: "root"
-          - name: SPRING_DATASOURCE_PASSWORD
-            value: "Admin@11"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://192.168.1.237:3306/AMS" # Target your true host IP
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "root"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "Admin@11"
+

@@ -16,6 +16,6 @@ spec:
     spec: 
       containers:
       - name: am-app
-        image: syedhuzaifafazal/am:replaceImageTag
+        image: syedhuzaifafazal/am:29
         ports:
         - containerPort: 8080

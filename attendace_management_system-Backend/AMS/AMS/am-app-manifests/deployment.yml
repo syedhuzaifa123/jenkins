@@ -19,3 +19,10 @@ spec:
         image: syedhuzaifafazal/am:29
         ports:
         - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:mysql://mysql-host-bridge:3306/AMS"
+          - name: SPRING_DATASOURCE_USERNAME
+            value: "root"
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: "Admin@11"

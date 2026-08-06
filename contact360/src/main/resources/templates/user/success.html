@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Payment Successful</title>
+</head>
+
+<body>
+
+	<section>
+
+		<!-- <div class="container">
+			<div class="card text-center">
+
+				<div class="card-body">
+					<h2 th:text="${msg}"></h2>
+					<h2>
+						Status: <span th:text="${status}"></span>
+					</h2>
+					<h2>
+						Amount: <span th:text="${amount}"></span>
+					</h2>
+					<h2>
+						Email: <span th:text="${email}"></span>
+					</h2>
+					<p>Your payment was completed successfully.</p>
+				</div>
+
+			</div>
+		</div> -->
+
+		<div class="receipt-box my-3">
+
+			<div class="receipt-title">Payment Receipt</div>
+
+			<hr>
+
+			<div class="row">
+				<span class="label">Payment Intent ID:</span> <span class="value"
+					th:text="${payment.paymentIntentId}"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Order Reference:</span> <span class="value"
+					th:text="${payment.orderReference}"></span>
+			</div>
+
+			<!-- <div class="row">
+				<span class="label">Session ID:</span> <span class="value"
+					th:text="${payment.sessionId}"></span>
+			</div> -->
+
+			<div class="row">
+				<span class="label">Payee:</span> <span class="value"
+					th:text="${payment.user.name}"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Email:</span> <span class="value"
+					th:text="${payment.email}"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Amount:</span> <span class="value"
+					th:text="${#numbers.formatDecimal(payment.amount / 100.0, 1, 2)} + ' PKR'"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Currency:</span> <span class="value"
+					th:text="${#strings.toUpperCase(payment.currency)}"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Status:</span> <span class="value"
+					th:text="${payment.status}"></span>
+			</div>
+
+			<div class="row" th:if="${payment.customerReference}">
+				<span class="label">Customer Reference:</span> <span class="value"
+					th:text="${payment.customerReference}"></span>
+			</div>
+
+			<div class="row">
+				<span class="label">Payment Date:</span> <span class="value"
+					th:text="${payment.createdAt}"></span>
+			</div>
+
+			<hr>
+			<h6 style="text-align: center;">Thank you for your payment!</h6>
+		</div>
+
+	</section>
+
+</body>
+
+</html>

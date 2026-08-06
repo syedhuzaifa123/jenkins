@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Forgot Password</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<div
+				class="row min-vh-100 d-flex justify-content-center align-items-center">
+				<div class="col-md-4">
+
+					<div class="my-card rounded">
+
+						<div class="card-header my-3">
+							<h4 class="text-center">Email Verification</h4>
+							<div th:if="${message != null}" class="alert"
+								th:classappend="${'alert-' + message.type}" role="alert">
+								<span th:text="${message.message}"></span>
+							</div>
+						</div>
+
+						<div class="card-body">
+
+							<form th:action="@{/send-otp}" th:method="post">
+
+								<!-- Forgot password email verification -->
+								<div class="my-3">
+									<input type="email" class="form-control" name="email"
+										placeholder="Enter your email" required="required">
+								</div>
+
+								<div class="container text-center my-3">
+									<button type="submit" class="btn bg-primary text-white">Send
+										OTP</button>
+								</div>
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

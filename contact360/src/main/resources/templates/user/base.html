@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(content)">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${title}"></title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+	integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link th:rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div>
+		<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-primary">
+
+
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Contact360</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-5">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" th:href="@{/}" href="#">Home</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/about}"
+							href="#">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							th:text="${user.name}">Login</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/logout}"
+							href="#">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<!-- Sidebar -->
+
+	<div class="sidebar">
+
+		<span onclick="toggleSidebar()" class="crossBtn">&times;</span> <a
+			id="home-link" th:href="@{/user/dashboard}" class="item"><i
+			id="home-link-icon" class="fa fa-home custom-icon" aria-hidden="true"></i>
+			Home</a> <a id="show-link" th:href="@{/user/show-contact/0}" class="item"><i
+			id="show-link-icon" class="fa fa-id-card-alt custom-icon"
+			aria-hidden="true"></i> View Contacts</a> <a id="add-link"
+			th:href="@{/user/add-contact}" class="item"><i id="add-link-icon"
+			class="fa fa-pencil-alt custom-icon" aria-hidden="true"></i> Add
+			Contact</a> <a id="profile-link" th:href="@{/user/profile}" class="item"><i
+			id="profile-link-icon" class="fa fa-user-circle custom-icon"
+			aria-hidden="true"></i> Profile</a> <a id="setting-link"
+			th:href="@{/user/settings}" class="item"><i
+			id="setting-link-icon" class="fa fa-cogs custom-icon"
+			aria-hidden="true"></i> Setting</a> <a href="#" th:href="@{/logout}"
+			class="item"><i class="fa fa-sign-out custom-icon"
+			aria-hidden="true"></i> Logout</a>
+		<div class="divider"></div>
+	</div>
+
+	<!-- Content -->
+	<div class="content">
+		<div class="hamburger">
+			<i onclick="toggleHamburger()" class="fa fa-bars mt-3"></i>
+		</div>
+		<div class="mt-3" th:replace="${content}"></div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script th:src="@{/js/script.js}"></script>
+	<script src="https://js.stripe.com/v3/"></script>
+</body>
+</html>

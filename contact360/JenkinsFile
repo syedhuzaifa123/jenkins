@@ -66,7 +66,8 @@ pipeline {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     #Install git inside the lightweight Alpine container
-                    sh 'apk add --no-cache git'
+                    apk add --no-cache git
+                    git config --global --add safe.directory "*"
                     git config user.email "syedhuzaifafazal123@gmail.com"
                     git config user.name "syedhuzaifa123"
                     BUILD_NUMBER=${BUILD_NUMBER}

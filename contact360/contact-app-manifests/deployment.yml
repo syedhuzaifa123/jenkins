@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: contact360-app
-        image: syedhuzaifafazal/contact360:8
+        image: syedhuzaifafazal/contact360-app:8
         ports:
         - containerPort: 8080

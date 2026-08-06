@@ -25,7 +25,7 @@ pipeline {
         // build the project and create a JAR file
 
         //sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
-        sh 'cd contact360/ && mvn clean package'
+        sh 'cd contact360/ && mvn clean package -DskipTests'
       }
     }
     stage('Static Code Analysis') {

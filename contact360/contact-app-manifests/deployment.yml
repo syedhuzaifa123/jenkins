@@ -14,6 +14,7 @@ spec:
       labels:
         app: contact360-app
     spec:
+      hostNetwork: true
       containers:
       - name: contact360-app
         image: syedhuzaifafazal/contact360-app:8

@@ -38,7 +38,7 @@ import com.contacts.helper.Message;
 import com.contacts.model.Contact;
 import com.contacts.model.Payment;
 import com.contacts.model.User;
-import com.contacts.service.StripeService;
+//import com.contacts.service.StripeService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.model.checkout.Session;
@@ -56,8 +56,8 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Autowired
-	private StripeService stripeService;
+//	@Autowired
+//	private StripeService stripeService;
 
 	@Autowired
 	private PaymentRepository paymentRepository;
@@ -305,55 +305,55 @@ public class UserController {
 	// Create Order - Payment Gateway
 	@PostMapping("/create-order")
 	@ResponseBody
-	public PaymentResponse createOrder(@RequestBody PaymentRequest request) {
-		System.out.println("Order Function Executed");
-		System.out.println("Data: " + request);
+//	public PaymentResponse createOrder(@RequestBody PaymentRequest request) {
+//		System.out.println("Order Function Executed");
+//		System.out.println("Data: " + request);
+//
+//		Long amount = request.getAmount();
+//		System.out.println("Amount: " + amount);
+//
+//		PaymentResponse response = stripeService.checkout(request);
+//		System.out.println("Response: " + response);
+//		return response;
+//	}
 
-		Long amount = request.getAmount();
-		System.out.println("Amount: " + amount);
-
-		PaymentResponse response = stripeService.checkout(request);
-		System.out.println("Response: " + response);
-		return response;
-	}
-
-	@GetMapping("/success")
-	public String paymentSuccess(@RequestParam("session_id") String sessionId, Model model, Principal principal)
-			throws StripeException {
-
-		Session session = stripeService.retrieveSession(sessionId);
-
-		String paymentIntentId = session.getPaymentIntent();
-		PaymentIntent paymentIntent = stripeService.retrievePaymentIntent(paymentIntentId);
-		System.out.println("Payment Intent: " + paymentIntent);
-		System.out.println("Payment Intent JSON: " + paymentIntent.toJson());
-		System.out.println("Payment Intent String: " + paymentIntentId.toString());
-
-		Payment payment = new Payment();
-		payment.setPaymentIntentId(paymentIntentId);
-		payment.setSessionId(sessionId);
-		payment.setEmail(session.getCustomerDetails().getEmail());
-		payment.setAmount(paymentIntent.getAmount());
-		payment.setStatus(paymentIntent.getStatus());
-		payment.setCurrency(paymentIntent.getCurrency());
-		payment.setCustomerReference(paymentIntent.getPaymentDetails().getCustomerReference());
-		payment.setOrderReference(paymentIntent.getPaymentDetails().getOrderReference());
-		payment.setCreatedAt(new Date(paymentIntent.getCreated() * 1000));
-		payment.setUser(this.userRepository.getUserByUsername(principal.getName()));
-
-		paymentRepository.save(payment);
-		System.out.println("Payment Object: " + payment);
-
-		model.addAttribute("title", "Contacts360 - Payment Succeed");
-		model.addAttribute("msg", "Payment Successful!");
-		model.addAttribute("amount", paymentIntent.getAmount());
-		model.addAttribute("status", paymentIntent.getStatus());
-		model.addAttribute("email", session.getCustomerDetails().getEmail());
-		model.addAttribute("payment", payment);
-
-		return "user/success";
-	}
-
+//	@GetMapping("/success")
+//	public String paymentSuccess(@RequestParam("session_id") String sessionId, Model model, Principal principal)
+//			throws StripeException {
+//
+//		Session session = stripeService.retrieveSession(sessionId);
+//
+//		String paymentIntentId = session.getPaymentIntent();
+//		PaymentIntent paymentIntent = stripeService.retrievePaymentIntent(paymentIntentId);
+//		System.out.println("Payment Intent: " + paymentIntent);
+//		System.out.println("Payment Intent JSON: " + paymentIntent.toJson());
+//		System.out.println("Payment Intent String: " + paymentIntentId.toString());
+//
+//		Payment payment = new Payment();
+//		payment.setPaymentIntentId(paymentIntentId);
+//		payment.setSessionId(sessionId);
+//		payment.setEmail(session.getCustomerDetails().getEmail());
+//		payment.setAmount(paymentIntent.getAmount());
+//		payment.setStatus(paymentIntent.getStatus());
+//		payment.setCurrency(paymentIntent.getCurrency());
+//		payment.setCustomerReference(paymentIntent.getPaymentDetails().getCustomerReference());
+//		payment.setOrderReference(paymentIntent.getPaymentDetails().getOrderReference());
+//		payment.setCreatedAt(new Date(paymentIntent.getCreated() * 1000));
+//		payment.setUser(this.userRepository.getUserByUsername(principal.getName()));
+//
+//		paymentRepository.save(payment);
+//		System.out.println("Payment Object: " + payment);
+//
+//		model.addAttribute("title", "Contacts360 - Payment Succeed");
+//		model.addAttribute("msg", "Payment Successful!");
+//		model.addAttribute("amount", paymentIntent.getAmount());
+//		model.addAttribute("status", paymentIntent.getStatus());
+//		model.addAttribute("email", session.getCustomerDetails().getEmail());
+//		model.addAttribute("payment", payment);
+//
+//		return "user/success";
+//	}
+//
 	@GetMapping("/cancel")
 	public String paymentCancel(Model model) {
 		model.addAttribute("title", "Contacts360 - Payment Failed");

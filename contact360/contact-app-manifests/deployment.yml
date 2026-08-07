@@ -17,6 +17,6 @@ spec:
       #hostNetwork: true
       containers:
       - name: contact360-app
-        image: syedhuzaifafazal/contact360-app:replaceImageTag
+        image: syedhuzaifafazal/contact360-app:11
         ports:
         - containerPort: 8080
